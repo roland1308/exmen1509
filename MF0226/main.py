@@ -26,10 +26,11 @@ class Hangman:
     def __init__(self, word):
         self.word = word
         self.guessed = []
-        self.tries = 6
+        self.tries = 0
         self.count = 0
 
     def guess(self, letter):
+        self.tries += 1
         if letter in self.guessed:
             print("You already guessed that letter")
         else:
@@ -50,14 +51,14 @@ class Hangman:
         print('\n')
 
     def print_hangman(self):
-        print(hangman_parts[len(self.guessed)+1])
+        print(hangman_parts[self.tries+1])
 
     def check_if_player_won(self):
         if self.count == len(self.word):
             return True
 
     def check_if_player_lost(self):
-        if len(self.guessed) == self.tries:
+        if self.tries == 6:
             return True
 
 
